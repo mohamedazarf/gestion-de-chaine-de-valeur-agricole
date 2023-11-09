@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg  fixed-top"  #nav [ngClass]="{'transparentNavbar': routeUrl === '/'||routeUrl==='/home'||routeUrl==='/contact'||routeUrl==='/login'||routeUrl==='/apropos' || routeUrl === '**' }">
+    <!-- <a class="navbar-brand"  href="#">Navbar</a> -->
+    <img src="./assets/LogoCytekiya.png" alt="" style="height: 65px;width:155px;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLinkActive="'active-link'" routerLink="">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" routerLinkActive="'active-link'" routerLink="/apropos" >À propos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" routerLinkActive="'active-link'">Contact us</a>
+        </li>
+        <li class="nav-item">
+          <!-- <a class="nav-link" routerLink="listOfUsers?userType=user&userRole=transformateur" routerLinkActive="'active-link'">Dashboard</a> -->
+        <a class="nav-link" *ngIf="this.loggedIn" routerLink="/listOfUsers"   [queryParams]="{userType: userRole, userRole:userType}">Dashboard</a>
+        </li>
+      </ul>
+      
+        
+  
+
+        <div class="nav-item" id="loginButton">
+          <button class="btn btn-success" *ngIf="showLoginButton">
+            <a class="nav-link "style="color:white;font-family:roboto;" *ngIf="this.loggedIn" (click)="logout()" routerLink="/login">logout</a>
+            <a class="nav-link "style="color:white; font-family:roboto;" *ngIf="!this.loggedIn" routerLink="/login">login</a>  
+          </button>
+            &nbsp;
+        </div> 
+      </div>
+    </nav>

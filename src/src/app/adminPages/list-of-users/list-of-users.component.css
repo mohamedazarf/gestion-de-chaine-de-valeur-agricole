@@ -1,0 +1,747 @@
+table{
+    background-color: gray; color:white
+}
+table tr{
+  cursor: pointer; 
+}
+
+.arrow:active, .arrow:visited{
+    color:red;
+}
+.paginator{
+    position:absolute; right:50px;
+    display: flex; width: 150px;  justify-content: space-between;
+}
+.paginator-offreAgricole{
+  position:absolute; right:-100px; top: 30px; z-index:10000;
+    display: flex; width: 150px;  justify-content: space-between;
+}
+.container{
+    margin-top: 0px;
+    margin-left: 0px;
+    text-align: center;
+    background-color: red;
+  }
+  .marget{
+    left: 58%;
+    transform: translateX(-50%);
+    position: absolute;
+    top: 150px;
+  }
+  .margett{
+    left:50%;
+    width: 1550px;
+    transform: translateX(-50%);
+    position: absolute;
+    top: 100px;
+  }
+  /* .margettes{
+    left:60%;
+    width: 1550px;
+    transform: translateX(-50%);
+    position: absolute;
+    top: 100px;
+  } */
+  .margette{
+    left:60%;
+    /* margin-left: 600px; */
+    width: 1550px;
+    transform: translateX(-50%);
+    position: absolute;
+    top: 100px;
+  }
+  .taille{
+    height: 100vh;
+    top: 85px;
+    position: fixed;
+    
+  }
+  .s8ir
+  {
+    width: 1000px;
+  }
+  .functions a{
+    
+    transition: text-align 0.9s ease-in-out;
+    transform:all 0.5s ease-in-out;
+    transition: background-color 0.3s ease-in-out; padding:15px 5px;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0)
+    );
+  }
+.functions a:hover{
+  transform: scale(1.1);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal {
+  position: relative;
+  background-color:#ccc;
+  padding: 20px;
+  width: 500px;
+  height: auto;
+  max-width: 90%;
+  max-height: 90%;
+  overflow:visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+.close-btn {
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+.user-details-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-details-table th,
+.user-details-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-details-table th {
+  background-color: blue;
+}
+
+
+
+
+/*agriculteur*/
+.farmerStock{
+  width:calc(100% - 500px);position:absolute; left:350px;
+ 
+
+}
+
+
+/* agriculture section */
+.agriculture {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px; display: flex; flex-direction: column; align-items: center;
+  width:1500px;
+ }
+ .agriculture table{
+  width:1000px;
+ }
+.transformateur{
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px; display: flex; flex-direction: column; align-items: center;
+}
+
+.agriculture h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.agriculture form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 500px;
+  gap: 25px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.agriculture .column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.agriculture label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.agriculture select,
+.agriculture input[type="number"],
+.agriculture input[type="text"] {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;  width:200px;
+}
+
+.agriculture .butt {
+  position: absolute;
+  top: 450px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+}
+
+.agriculture button:hover {
+  background-color: #3e8e41;
+}
+.transformateur h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.transformateur form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 500px;
+  gap: 25px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.transformateur .column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.transformateur label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.transformateur select,
+.transformateur input[type="number"],
+.transformateur input[type="text"] {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  width:200px;
+}
+
+.transformateur .butt {
+  position: absolute;
+  top: 470px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+}
+
+.transformateur button:hover {
+  background-color: #3e8e41;
+}
+
+
+#stock {
+border-collapse: collapse;
+width: 100%;
+background-color:white;
+color:black;
+}
+
+#stock  th, td {
+padding: 8px;
+text-align: center;
+border-bottom: 1px solid #ddd;
+}
+
+#stock th {
+background-color:#808080;
+color: white;
+font-weight: bold;
+}
+
+/* #stock tr:nth-child(even) {
+background-color: #7d7f7f;
+} */
+
+
+
+/* reclammation */
+
+.reclamation {
+  background-color: #f9f9f9;
+  /* padding: 20px;
+  margin: 20px 0;
+  left:350px; */
+  border-radius: 10px;
+  width:calc(100% - 500px);position:absolute; 
+}
+
+.reclamation h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.reclamation form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  border-radius: 0 0 12px 12px;
+  background-color:#294e9d ; color:white; 
+}
+
+.reclamation label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.reclamation input[type="text"], .reclamation input[type="email"], .reclamation textarea {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.reclamation textarea {
+  resize: vertical;
+  width:50%;
+}
+
+.reclamation button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reclamation button:hover {
+  background-color: #3e8e41;
+}
+
+#historique {
+  border-collapse: collapse;
+  width: 100%;
+  left:200px;
+    /* margin-left: 600px; */
+   width:1550px;
+    position: absolute;
+    top: 120px; 
+  }
+  
+  #historique  th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  }
+#historique td{color:black; background-color: white;}  
+  #historique th {
+  background-color: #808080;
+  color: white;
+  font-weight: bold;
+  }
+  
+  #historique tr:nth-child(even) {
+  background-color: #7d7f7f;
+  }
+
+  .platform-conditions {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  margin-top: 100px;
+  display: flex; flex-direction: column; align-items: center;
+  }
+
+  
+  .platform-conditions h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+
+  
+  .platform-conditions li {
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+
+.fancy-title {
+ 
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(to right, #4f7bbb, #a680b1, #d05f5f, #f8b74d, #71b280);
+
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+ 
+  border-radius: 10px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.line{display: inline;}
+
+
+
+
+
+/* Style the button that triggers the dropdown */
+.dropbtn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Position the dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Style the dropdown content when the user hovers over it */
+.dropdown-content a:hover {
+  background-color: #2d5273;
+
+}
+
+/* Show the dropdown content when the user clicks on the button */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+.message.success{
+  z-index: 1000;
+  position:absolute; top:150px; left:50%; height:88px; width:100%; transform: translateX(-50%);
+  color:black; display:flex; justify-content: center; align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+   text-align: center;
+  background-color: white;
+}
+.success{
+  position:absolute; top:88px; left:50%; height: 150px; width:15%; transform: translateX(-50%);
+  background-color:white; 
+  z-index: 1000;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.success .icon{
+  position: absolute; left:50%;transform: translateX(-50%);
+}
+
+
+.message.error{
+  z-index: 1000;
+  position:absolute; top:150px; left:50%; height:88px; width:100%; transform: translateX(-50%);
+  color:black; display:flex; justify-content: center; align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+   text-align: center;
+  background-color: white;
+}
+.error{
+  position:absolute; top:88px; left:50%; height: 150px; width:15%; transform: translateX(-50%);
+  background-color:white; 
+  z-index: 1000;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.error .icon{
+  position: absolute; left:50%;transform: translateX(-50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+notification for no user waiting for approval */
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+  border: 2px solid #ccc;
+  color: #555;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-bottom: 10px;width: 500px; height:100px;
+  position: absolute; top: 300px; left:calc(50% - 250px);
+}
+
+.alert.no-waiting {
+  background-color: #dff0d8;
+  border-color: #d0e9c6;
+  color: #3c763d;
+}
+
+.alert .message {
+  margin: 0;
+}
+
+
+/* tayaht fil table bech mayratich 3lih l filtre */
+#showOffreTransformateur{
+  margin-top: 100px;
+}
+#showExportateurs{
+  margin-top: 100px; 
+}
+.updateStock{
+width:500px; height:500px;
+}
+.updateStock form{
+  display: flex; flex-direction: column; align-items: center;  position:absolute; top:60px; width:100%
+}
+.updateStock .valider {
+   margin-top: 30px;
+}
+.updateStock .hideModal{
+  position: absolute; top:0; right:0;
+}
+.updateStock input,select{
+  width:50%;}
+  .updateStock label{ width:50%;}
+/* 
+#listeReclammmations{
+  position:absolute; top:150px; left:calc(50% - 300px); text-align: center;
+  width:1000px; height:350px;  
+
+}
+
+#listeReclammmations .actor{
+ border-bottom: 1px solid black;
+}
+
+.reclamationsContainer{
+   width:1000px; height:350px; 
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1), 0px -8px 15px rgba(0, 0, 0, 0.1); 
+}
+.reclamation{
+  position:absolute; width:100%; height:350px; 
+  display: flex; justify-content:center; flex-direction: column; 
+}
+.actor{
+  position:absolute; top:0; width:100%;background-color: #116D6E; color:white;
+  
+}
+.content{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  margin-top:50px;display:flex; justify-content:center; align-items: center;
+  height:302px;font-size:38px;
+} */
+/* 33333333333333333 #listeReclammmations {
+  position: absolute;
+  top: 150px;
+  left: calc(50% - 300px);
+  text-align: center;
+}
+
+.reclamationsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.reclamation {
+  width: 300px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.header {
+  background-color: #116D6E;
+  color: white;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+}
+
+.header h2,
+.header p {
+  margin: 0;
+}
+
+.content p {
+  margin: 0;
+} */
+
+/* 222
+#listeReclammmations {
+  position: absolute;
+  top: 150px;
+  left: calc(50% - 500px);
+  text-align: center;
+  width: 1000px;
+}
+
+.reclamationsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+}
+
+.reclamation {
+  width: 400px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.actor {
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  background-color: #116D6E;
+  color: white;
+}
+
+.actor h2 {
+  margin: 0;
+}
+
+.content {
+  margin: 0;
+  padding: 20px;
+  font-size: 18px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+} */
+.Recla {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.card {
+  width: 420px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.card-title {
+  padding: 12px 0;
+}
+
+.card-title h5, .card-title p {
+  margin: 0;
+}
+
+.card-title p {
+  font-size: 14px;
+  color: #888;
+}
+
+.list-group-item {
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+}
+
+.list-group-item i {
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+.btn-delete {
+  background-color: #ff5c5c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}

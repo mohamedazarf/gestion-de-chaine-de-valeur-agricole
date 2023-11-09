@@ -1,0 +1,39 @@
+<div class="flouContainer">
+<main>
+
+    <h1>stats</h1>
+        <section class="statistics">
+          
+            <div class="stat">
+                <h3>Number of Users</h3>
+                <p class="value">{{userValue}}</p>
+            </div>
+            <div class="stat">
+                <h3>Number of Transactions</h3>
+                <p class="value">{{transactionValue}}</p>
+            </div>
+            <div class="stat">
+                <h3>Number of Products</h3>
+                <p class="value">{{productValue}}</p>
+            </div>
+            <!-- More statistics go here -->
+        </section>
+        <section id="lora" class="writing-effect">
+<!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse nihil maxime ad. Vero fugit est nulla ratione consectetur pariatur eius dicta? Eos veritatis quisquam assumenda dolorem sequi dolorum, modi officiis.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse nihil maxime ad. Vero fugit est nulla ratione consectetur pariatur eius dicta? Eos veritatis quisquam assumenda dolorem sequi dolorum, modi officiis.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse nihil maxime ad. Vero fugit est nulla ratione consectetur pariatur eius dicta? Eos veritatis quisquam assumenda dolorem sequi dolorum, modi officiis.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse nihil maxime ad. Vero fugit est nulla ratione consectetur pariatur eius dicta? Eos veritatis quisquam assumenda dolorem sequi dolorum, modi officiis.
+ -->
+
+ <div *ngFor="let line of lines" class="line" [class.visible]="line.visible">{{ line.text }}</div>
+
+</section>
+ 
+</main>
+</div>
+<footer>
+    <div >
+        <p>&copy; 2023 Agriculture Products Value Chain Management Platform with Blockchain. All rights reserved.</p>
+    </div>
+</footer>
+

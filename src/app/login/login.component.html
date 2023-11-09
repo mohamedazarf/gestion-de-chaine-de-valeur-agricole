@@ -1,0 +1,151 @@
+<body> 
+  <div class="flou" *ngIf="showerrorMessage || showSuccessMessage"></div>
+  <app-header></app-header>
+<div class="container" >
+<div class="slideWelcome mx-auto my-auto " [ngClass]="{'hidden': isHidden}" >
+  <div>
+    <!-- <H2>welcome</H2>
+    <button class="button" (click)="goToSubscribe()">create an account</button> -->
+          <div>
+            <div>
+              <h1 class="card-title text-center mb-12" ><h1 style="color:rgb(255, 255, 255);">Registre</h1></h1>
+              <a class="backToCin" (click)="backToCinFunction()" *ngIf="cinRegisterIsValid" style="color: white;" >&laquo;</a>
+           
+              <br><br>
+                <form #formCin="ngForm" (ngSubmit)="onSubmitCin($event)">
+                  <div [ngClass]="{'hidden':cinRegisterIsValid}">
+                  <div class="form-group" [ngClass]="{'hidden':cinRegisterIsValid}" >
+                      <label for="CIN" ><h5 style="color:rgb(255, 255, 255);">CIN :</h5></label>
+                      <input type="number"class="sinup" min="01000000" max="99999999" name="CIN" [(ngModel)]="cinRegister" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}" required class="form-control" id="CIN"  placeholder="CIN"><small style="color:rgb(255, 255, 255);">Format: 13-46-13-46</small>
+                  </div>
+                  <div class="form-group" >
+                    <label for="nom" ><h5 style="color:rgb(255, 255, 255);">nom :</h5></label>
+                    <input type="text"class="sinup"  name="nom" [(ngModel)]="nomSignup"required class="form-control" id="nom"  placeholder="nom">
+                </div>
+                <div class="form-group" >
+                  <label for="email" ><h5 style="color:rgb(255, 255, 255);">email :</h5></label>
+                  <input type="email"class="sinup"  name="email" [(ngModel)]="emailSignup" required class="form-control" id="email"  placeholder="email">
+              </div>
+              <div class="form-group" >
+                <label for="phone" ><h5 style="color:rgb(255, 255, 255);">phone :</h5></label>
+                <input type="phone"class="sinup"  name="phone" [(ngModel)]="phoneSignup" required class="form-control" id="email"  placeholder="phone">
+            </div>
+            <div class="form-group" >
+              <label for="role" ><h5 style="color:rgb(255, 255, 255);">role :</h5></label>
+              <input type="text"class="sinup"  name="role" [(ngModel)]="roleSignup" required class="form-control" id="role"  placeholder="role">
+          </div>
+          <!-- <div class="form-group" >
+            <label for="type" ><h5 style="color:rgb(255, 255, 255);">type :</h5></label>
+            <input type="text"class="sinup"  name="type" [(ngModel)]="typeSignup" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}" required class="form-control" id="type"  placeholder="type"><small style="color:rgb(255, 255, 255);">Format: 13-46-13-46</small>
+        </div>
+        <div class="form-group" >
+          <label for="localisation" ><h5 style="color:rgb(255, 255, 255);">localisation :</h5></label>
+          <input type="text"class="sinup"  name="localisation" [(ngModel)]="localisationSignup" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}" required class="form-control" id="type"  placeholder="localisation"><small style="color:rgb(255, 255, 255);">Format: 13-46-13-46</small>
+      </div>  -->
+     
+    </div>
+                 
+                </form>
+                <button type="submit" #btnEnvoyerVerifier class="btn btn-primary w-100 " class="sinup seConnecter1 " (click)="bouttonVerifierClicked();ajouterUtilisateur()" [ngClass]="{'hidden':cinRegisterIsValid}">envoyer</button>
+                <br>
+                  <form #formCode="ngForm"  [ngClass]="{'hidden':!bouttonVerifierIsClicked}" *ngIf="cinRegisterIsValid" (ngSubmit)="onSubmitCode()">
+                  
+                  <h5 style="color:rgb(255, 255, 255);">Code de vérification :</h5>
+                  <p style="color:rgb(255, 255, 255);">Veuillez entrer le code de vérification reçu par SMS :</p>
+                <div class="mb-2" class="d-flex justify-content-center ">
+                  <input  type="text" class="form-control verification-input" #input1 id="code1" minlength="1" maxlength="1" pattern="\d" required [(ngModel)]="input1Value" name="input1">
+                  <input  type="text" class="form-control verification-input" #input2 id="code2" minlength="1" maxlength="1" pattern="\d" required [(ngModel)]="input2Value" name="input2">
+                  <input  type="text" class="form-control verification-input" #input3 id="code3" minlength="1" maxlength="1" pattern="\d" required [(ngModel)]="input3Value" name="input3">
+                  <input  type="text" class="form-control verification-input" #input4 id="code4" minlength="1" maxlength="1" pattern="\d" required [(ngModel)]="input4Value" name="input4">
+                  <input  type="text" class="form-control verification-input" #input5 id="code5" minlength="1" maxlength="1" pattern="\d" required [(ngModel)]="input5Value" name="input5">
+                  <input  type="text" class="form-control verification-input" #input6 id="code6" minlength="1" maxlength="1" pattern="\d" required [(ngModel)]="input6Value" name="input6">
+                </div>
+     
+                <br><br>
+                <button type="submit" #btnEnvoyerVerifier class="btn btn-primary w-100" (click)="bouttonVerifierClicked()">vérifier</button>
+                <p class="text-center mt-3"><a href="#" style="color:rgb(255, 255, 255);">Renvoyer le code</a></p>
+              </form>
+              <br><br>
+            </div>
+          </div>
+
+    <div  class="loginBtn btn btn-success" (click)="moveLoginForm()"> Login </div>
+  </div>
+</div>
+     <div class="login-form">
+      <h1 style="color:rgb(255, 255, 255);">Connexion</h1>
+<form  (ngSubmit)="onSubmitLogin()"    [ngClass]="{'hidden':loginIsValid}"  >
+  <br><br>
+    
+    <!-- <div ngModelGroup="personDetails" #personDetails="ngModelGroup"> -->
+    <div class="form-group">
+      
+  <br><br>
+        <input type="number" class="form-control" min="01000000" max="99999999"  id="cin" name="cin" required aria-describedby="cinHelp" placeholder="cin" [(ngModel)]="cin" >
+      <small id="emailHelp" class="form-text " style="color:rgb(255, 255, 255);">We'll never share your cin with anyone else.</small>
+    </div>
+    <div style="text-align: center;">
+    <button type="submit" class="seConnecter " data-content="envoyer password">Envoyer Password</button>
+    </div>
+    </form>
+    <form >
+    <div class="form-group" *ngIf="loginIsValid">
+      <br><br>
+     
+      <input style="margin-top: 30px;" type="password" class="form-control" id="password" name="password" required [(ngModel)]="password" placeholder="password">
+    </div><br>
+    
+      <a class="backToCin" (click)="backToCinFunction()" *ngIf="loginIsValid" style="color: white;" >&laquo;</a>
+
+    
+  <!-- </div> -->
+  <div style="text-align: center;">
+    <button  *ngIf="loginIsValid" type="submit" class="seConnecter" (click)="verifycode(password)" >Se Connecter</button>
+    </div>
+    <br>
+    <!-- <b  class="text-center" >Mot de passe oublié</b> -->
+
+  <div  class="moveHorizentally loginBtn btn btn-success" (click)="moveLoginForm()"> Signup </div>
+  
+  
+  
+  </form>
+                    </div>
+  </div>
+  <div class="message" class="loading d-flex justify-content-center" *ngIf="cin && loginIsValid  && loginIsSubmitted && isWaiting">
+    <span>your request is on treatement</span></div>
+
+
+  <div class="success" *ngIf="showSuccessMessage">
+    <div class="icon">
+      <svg fill="white" width="100" height="100" viewBox="0 0 24 24" id="verified" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color">
+        <polyline fill="none" id="secondary" points="8 12 11 15 16 10" style="fill: none; stroke: green; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
+        <path fill="none" id="primary" d="M21.37,12c0,1-.86,1.79-1.14,2.67s-.1,2.08-.65,2.83-1.73.94-2.5,1.49-1.28,1.62-2.18,1.92S13,20.65,12,20.65s-2,.55-2.9.27S7.67,19.55,6.92,19,5,18.28,4.42,17.51s-.35-1.92-.65-2.83S2.63,13,2.63,12s.86-1.8,1.14-2.68.1-2.08.65-2.83S6.15,5.56,6.92,5,8.2,3.39,9.1,3.09s1.93.27,2.9.27,2-.55,2.9-.27S16.33,4.46,17.08,5s1.94.72,2.5,1.49.35,1.92.65,2.83S21.37,11,21.37,12Z" style="stroke: green; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+      </svg>
+    </div>    
+    <div class="message success" *ngIf="codeSubmitted && codeRegisterIsValid && showSuccessMessage">the verification code you wrote is true => password sent</div>
+    <!-- <div class="message success"*ngIf="personDetails.valid && loginIsValid  && loginIsSubmitted && showSuccessMessage" >You're good to pass!</div> -->
+    <div class="message success" *ngIf="cinSubmitted && cinRegisterIsValid ">the cin is valid write the code sent to your phone</div>
+    <div class="message success" *ngIf="userAdded">inscription envoyé, attend l'acceptation</div>
+ 
+  </div>
+  <div class="error" *ngIf="showerrorMessage">
+    <div class="icon">
+    <svg width="100" height="100px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <title>error</title>
+      <g id="Page-1" stroke="none" stroke-width="1" fill="red" fill-rule="evenodd">
+          <g id="add" fill="red" transform="translate(42.666667, 42.666667)">
+              <path fill="red" d="M213.333333,3.55271368e-14 C331.136,3.55271368e-14 426.666667,95.5306667 426.666667,213.333333 C426.666667,331.136 331.136,426.666667 213.333333,426.666667 C95.5306667,426.666667 3.55271368e-14,331.136 3.55271368e-14,213.333333 C3.55271368e-14,95.5306667 95.5306667,3.55271368e-14 213.333333,3.55271368e-14 Z M213.333333,42.6666667 C119.232,42.6666667 42.6666667,119.232 42.6666667,213.333333 C42.6666667,307.434667 119.232,384 213.333333,384 C307.434667,384 384,307.434667 384,213.333333 C384,119.232 307.434667,42.6666667 213.333333,42.6666667 Z M262.250667,134.250667 L292.416,164.416 L243.498667,213.333333 L292.416,262.250667 L262.250667,292.416 L213.333333,243.498667 L164.416,292.416 L134.250667,262.250667 L183.168,213.333333 L134.250667,164.416 L164.416,134.250667 L213.333333,183.168 L262.250667,134.250667 Z" id="error">
+  </path>
+          </g>
+      </g>
+  </svg>
+    </div>
+ <!-- <div class="message error" *ngIf="personDetails.invalid && personDetails.touched && loginIsSubmitted && passwordError" >the informations provided are not valid (all fields are required)</div> -->
+ <div class="message error"*ngIf="!loginIsValid && loginIsSubmitted && showerrorMessage" >the cin is not valid </div>
+<div class="message error" *ngIf="cinSubmitted && !cinRegisterIsValid && showerrorMessage">the cin is not valid </div>
+<div class="message error" *ngIf="showerrorMessage && codeSubmitted && !codeRegisterIsValid">the verification code you wrote is not valid</div>
+<div class="message error" *ngIf="userNotAdded">inscription a échoué</div>
+</div>
+
+</body>

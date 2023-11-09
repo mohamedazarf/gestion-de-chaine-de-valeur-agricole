@@ -1,0 +1,357 @@
+body{
+  display: flex; justify-content: center; align-items: center;position:relative;
+background-image: url('src\assets\backgound.jpg'); 
+background-repeat: no-repeat; background-size: cover;
+background-position: center;
+
+height: 100vh;
+}
+/* .transparent{
+  position: absolute; height:100%; width:100%; top:0; left:0; background-color:transparent;
+  opacity: 0.9;
+} */
+/* .container{
+  position:absolute; top:150px;
+} */
+/* .moveHorizentally{
+  position:absolute; top:50%; right:5%;
+} */
+/* .animate-left {
+  
+  left: 0;
+
+} */
+.moved {
+  animation: moveLeft 15s ease-in-out;
+}
+.movedL3aks{
+  animation: moveRight 15s ease-in-out;
+}
+.loading{
+    position:absolute; top:50%; left:50%; z-index:1000;
+   transform: translate(-50%,-50%); 
+   width: 200px; display: flex; align-items: center; 
+   height: 200px; 
+  }
+
+  
+  .loading span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .loading:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 10px solid black;
+    border-top-color: red;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+@keyframes moveLeft{
+  0%{transform:translateX(0px);
+    opacity: 1;}
+
+      100%{transform:translateX(-500px);opacity: 0;}
+}
+@keyframes moveRight{
+  0%{transform:translateX(500px);
+    opacity: 0;}
+
+      100%{transform:translateX(0px);opacity: 1;}
+}
+
+
+/* .animate-left.animate {
+  left: -50%;
+} 
+
+/* .animate-right.animate {
+  left: 50%;
+} */
+.container{
+   position:relative;
+  /* position: absolute;  */ 
+    width: 520px; height:720px;  padding:10px 0; top:-100px;
+    overflow: hidden;
+    margin-top: 150px;
+    /* top:150px; left:calc(50% - 250px); */
+}
+.verification-input {
+  width: 2.2rem; /* taille minimale de l'input */
+  text-align: center; /* centrage du texte */
+  margin: 0 0.5rem; /* marge horizontale entre les inputs */
+}
+.loginBtn{
+  position:absolute; bottom:10px; left:50%; transform: translateX(-50%);
+}
+.collapsed {
+  padding: 0px;
+  width: 550px;
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+h1{text-align:center;}
+.slideWelcome{
+width:500px; height:700px;background-color:transparent; backdrop-filter: blur(20px);
+/* animation: slideWelcomeAnimation 15s ease-in-out;
+animation-fill-mode: forwards;
+animation-delay: 1s;  */
+border-radius: 8px; color:black;
+position:absolute; left:calc(calc(50% - 250px) + 520px);box-shadow: 0 0 5px 2px black;
+display: flex; align-items: center; justify-content: center;
+}
+.slideWelcome .card{
+  background-color: transparent; border:none;
+}
+.slideWelcome .card > *,.slideWelcome .card > * *{
+   color:black;
+}
+.slideWelcome .active{
+  transform:translateX(0);
+  transition: transform .5s ease-in-out;
+}
+.container .login-form .active{
+  transform:translateX(550px);
+  transition: transform .5s ease-in-out;
+}
+
+.hidden {
+  opacity: 0;
+  height: 0;
+  transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+  overflow: hidden; box-shadow: none;
+}
+.slideWelcome div{
+  color:white;
+}
+.slideWelcome .exit{
+  position: absolute; top:20px; right:20px;  
+   padding:10px 20px; cursor: pointer; 
+}
+/* @keyframes slideWelcomeAnimation{
+  0%{transform:translateX(0px);
+  opacity: 0;}
+  50%{transform:translateX(600px); opacity:1;
+    }
+    100%{transform:translateX(0px);opacity: 0;}
+} */
+.login-form {
+  z-index:2; position: absolute; 
+    width: 500px; height:700px;  background-color:transparent; 
+    margin: 0 auto;  left:calc(50% - 250px); backdrop-filter: blur(20px);
+    align-items: center; padding:10px; border-radius: 8px;
+    display: flex;flex-direction: column; 
+    transform:translateX(0);
+transition: transform .5s ease-in-out;
+    box-shadow: 0 0 5px 2px black;
+    overflow: hidden;
+  }
+
+  .login-form input[type="text"],
+  .login-form input[type="password"],
+  .login-form input[type="submit"]
+  {
+    width: 400px; 
+    height: 60px; border-radius: 12px;
+  }
+  
+  input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+  
+
+  .login-form button {
+    width: 150px;
+    height: 45px; border-radius: 10px; 
+  }
+
+ /* .seConnecter{
+    background-color: #2B968F; margin-top: 50px;
+    color:white; font-family: regular; font-size:16px; line-height: 24px;width: 50px;height: 20px;
+  } */
+  .seConnecter {
+    background-color: #2B968F;
+    color: white;
+    font-family: Roboto;
+    font-size:17px;
+    line-height: 24px;
+    display: inline;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-top: 35px; /* Ajustez les marges supérieure et inférieure, ainsi que les marges gauche et droite selon vos préférences */
+  }
+  .seConnecter1 {
+    background-color: #2B968F;
+    color: white;
+    font-family: Roboto;
+    font-size:17px;
+    line-height: 24px;
+    display: inline;
+    padding: 5px 10px;
+    border-radius: 4px;
+    /* margin-top: 5px; Ajustez les marges supérieure et inférieure, ainsi que les marges gauche et droite selon vos préférences */
+  }
+
+  /* .seConnecter {
+    background-color: #2B968F;
+    margin-top: 50px;
+    color: white;
+    font-family: regular;
+    font-size: 14px; 
+    line-height: 20px;
+    width: 80px; 
+    height: 30px; 
+  } */
+  .carre{
+    width:60px; height:6Opx; background-color: #698d5d;
+  }
+
+  .login-btn{
+    background-color: rgb(61, 61, 222);
+}
+
+.message.error{
+  z-index: 1000;
+  position:absolute; top:150px; left:50%; height:88px; width:100%; transform: translateX(-50%);
+  color:black; display:flex; justify-content: center; align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+   text-align: center;
+  background-color: white;
+}
+/* todo */
+.success{
+  position:absolute; top:88px; left:50%; height: 150px; width:15%; transform: translateX(-50%);
+  background-color:white; padding:25px;
+  z-index: 1000;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  
+}
+.success .icon{
+position: absolute; left:50%;transform: translateX(-50%);
+}
+.icon{
+  position: absolute; left:50%;transform: translateX(-50%);
+
+}
+.error{
+  position:absolute; top:88px; left:50%; height: 150px; width:15%; transform: translateX(-50%);
+  background-color:white; 
+  z-index: 1000;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+/* todo */
+.message.success{
+  z-index: 1000;
+  position:absolute; top:150px; left:50%; height:88px; width:100%; transform: translateX(-50%);
+   color:black; display:flex; justify-content: center;
+   border-bottom:2px solid black;
+  background-color: white;
+}
+
+.backToCin{
+  text-align: center; position: absolute; top:0; right:0;
+  padding: 10px 15px; background-color: #2b968f; color: #fff; text-decoration: none; border-radius: 5px; font-size: 35px; font-weight: bold;
+cursor: pointer;transition: box-shadow 0.3s ease-in-out;
+}
+.backToCin:hover{
+  box-shadow: 0 0 10px #2b968f;
+}
+
+.cinDisplaySpan{
+  background-color: #2B968F; color:white;
+  position: absolute; left:0;
+}
+.cinDisplay {
+  position: relative;
+  text-align: right;
+width:100%;
+  border:1px solid black; border-radius: 5px;
+}
+
+.cinDisplay::before,
+.cinDisplay::after {
+  content: "";
+  position: absolute;
+  
+  height: 3px;
+  background-color: #007bff;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: transform 0.5s ease-in-out;
+  animation:cinDisplayAnim 5s ease-in-out infinite;
+}
+
+.cinDisplay::after {
+  bottom: auto;
+  top: -10px;
+}
+
+.cinDisplay:hover::before,
+.cinDisplay:hover::after {
+  transform: translateX(-25%);
+}
+@keyframes cinDisplayAnim{
+  0%{width:0; }
+  50%{width:100%;}
+  100%{width:0;}
+}
+
+
+.flou{
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.5);
+
+    z-index: 10;
+}
+
+
+/* .form-button{
+  display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;   width: auto; font-size: 25px;
+      width:10px;
+}
+.form-button[data-content="envoyer password"]{
+  font-size: 25px; padding:0;
+}
+.form-button:hover {
+  background-color: #45a049;
+}
+ .formBtn{
+  margin-top: 70px; height: 20px;width:50px;
+} */
+.sinup{
+  width:300px;
+  margin-top: 5px;
+}

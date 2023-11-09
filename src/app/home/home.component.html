@@ -1,0 +1,167 @@
+<body>
+  
+  <!--Navbar-->
+  <app-header></app-header>
+   <!--Home-->
+  <div *ngIf="showSectionHome">
+ 
+     <div class="section back1" >
+      <section class="landing-section" >
+        <div class="container containere" >
+            <div class="profile-info" >
+              <div class="personal-info ">
+                <div class="row">
+            <div class="col-md-12 ">
+              <h1>Welcome to our plateforme</h1>
+              <h6>Cette plateforme permettra des résoudre plusieurs problèmes notamment la traçabilité
+                 puisque tout les transactions effectués seront enregistré dans des registres immuables et sécurisés,
+                  ce qui permet de tracer la provenance des produits et en plus assurer la sécurité des données et réduire 
+                  les risques de fraude ou de falsification des informations. La mise en place d'un système de rémunération 
+                  basé sur le score dans notre plateforme de blockchain peut avoir un impact significatif sur l'amélioration de la compétitivité 
+                  dans la chaîne de valeur agricole impliquant différents acteurs, tels que les producteurs, les transporteurs et les exportateurs
+                   ce qui résulte en meilleur productivité et meilleur compétitivité de dattes tunisienne.</h6>
+              <button class="btn btn-success"(click)="showApropos()">Get started</button>
+            </div></div></div>
+             <div class="col-md-4">
+       
+            <div class="text-center">
+              <img src="./assets/tmar.jpg" class="img-thumbnail " alt="Image description">
+            </div>
+          </div></div>
+        </div>
+      </section>
+    </div>
+
+<!-- Section Présentation de Produits-->
+
+<div class="sectione d-flex espace"  id="E-Hawiya"  >
+
+  <div class="content">
+  <h1 class="writing-effect" >Présentation de notre produit</h1>
+ <br>
+  <p class="pres">
+   Les dattes sont un fruit sucré et nutritif qui est cultivé dans de nombreux pays du monde, notamment en Tunisie où elles sont considérées comme un produit de haute qualité. Les dattes sont riches en fibres, en antioxydants et en plusieurs vitamines et minéraux, ce qui en fait un aliment sain et énergisant. En outre, les dattes sont également utilisées dans de nombreux plats et desserts traditionnels dans la cuisine tunisienne et dans d'autres cultures. La culture des dattes est une source importante de revenus pour de nombreux agriculteurs en Tunisie et dans d'autres régions, et notre plateforme vise à améliorer leur compétitivité sur les marchés locaux et internationaux.
+ </div>
+</div>
+
+<div class="sectione d-flex espace espace"  id="apropos" style="background-color: #EBF4DF;" >
+
+<div class="content profile-info ">
+<div  class="personal-infoo">
+ <br><br>
+ <h1  class="roboto">Les oasis tunisiennes et leur richesse en variétés de dattes</h1>
+ <br>
+  <p class="pres-m">
+    Les oasis du grand Sud tunisien, de Tozeur à Nefta, offrent un spectacle époustouflant qui semble irréel.
+     Outre la culture de la fameuse Deglet Nour, la variété de dattes la plus prestigieuse et exportée de Tunisie, 
+     on y trouve une grande variété d'autres cultivars de dattes. Avec plus de 250 variétés disponibles, chacune ayant des tailles,
+      des formes et des couleurs différentes, la Tunisie est un véritable paradis pour les amateurs de dattes. 
+      Certaines de ces variétés sont plus précoces ou plus tardives que la Deglet Nour,
+       mais toutes ont des qualités remarquables qui justifient l'attention particulière qu'elles reçoivent de la part des producteurs. 
+       Qu'elles soient oblongues ou sphériques, jaunes ou noires, rouges ou brunes, ces dattes sont toutes des trésors du terroir tunisien.
+
+    </p>
+   <br><br>
+ </div>
+
+<div>
+
+   <img src="./assets/degla.jpg" class="img-thumbnaile" alt="Image description">
+ </div>
+</div>
+</div>
+
+ 
+<section class="sizee" style="background-color: green; background-color: #ebf4df;" >
+  <!-- Slideshow container -->
+ <div class="slideshow-container">
+ 
+  <div class="mySlides cost">
+    <h1>Coûts Réduits</h1>   
+    <div ><br>
+     <p >L'utilisation de la technologie blockchain sur notre plateforme de gestion de chaîne de valeur 
+       des dattes permet une réduction significative des coûts de transaction grâce à l'absence
+        d'intermédiaires.</p>
+    </div>
+      </div>
+   <!-- Full-width slides/quotes -->
+   <div class="mySlides sécurite"  id="security">
+     
+      <h1>Securité</h1>
+     <!-- <img src="assets/security.jpg" alt=""> -->
+    <p class="sec1">Notre plateforme assure la sécurité des transactions grâce aux protocoles de 
+      de consensus comme la preuve de travail ou la preuve d'enjeu garantissent que 
+       les transactions sont valides et légitimes avant d'être ajoutées à la blockchain. Les mécanismes 
+       de chiffrement sont également utilisés pour protéger les données stockées dans la blockchain. , 
+       et ainsi permet une gestion plus fiable et transparente des données de la chaîne de valeur des dattes.</p>
+  </div>
+ 
+   <div class="mySlides integrite" id="integrite">
+ <h1 >integrité</h1>  
+ <p class="sec1">La blockchain garantit l'intégrité des données sur notre plateforme de gestion de 
+   chaîne de valeur des dattes grâce à un consensus distribué entre les participants. 
+   Les transactions sont validées avant d'être enregistrées sur la blockchain.
+  </p>
+   </div>
+ 
+   <!-- Next/prev buttons -->
+   <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+   <a class="next" (click)="plusSlides(1)">&#10095;</a>
+ </div>
+ <div class="dot-container">
+   <span class="dot" (click)="currentSlide(1)"></span>
+   <span class="dot" (click)="currentSlide(2)"></span>
+   <span class="dot" (click)="currentSlide(3)"></span>
+ </div>
+   
+ </section>
+    
+    
+    </div>
+
+
+
+<!-- Get Started-->
+
+<div *ngIf="showSectionStarted">
+
+  <div class="section d-flex espace image Get" id="E-Hawiya">
+   <div class="content">
+   <h1 class="writing-effect roboto" style="margin-left:70px;">Notre application fonctionne en collaboration avec e-howeya.</h1>
+  <br>
+   <p class="pres">
+     Dans notre plateforme de gestion de chaîne de valeur des dattes, nous avons intégré la solution E-Hawiya de vérification d'identité numérique basée sur la technologie blockchain. Cette intégration permet de garantir l'identité des différents acteurs impliqués dans la chaîne de valeur des dattes, tels que les producteurs, les distributeurs, les transformateurs et les consommateurs. Les entreprises et les consommateurs peuvent ainsi utiliser leurs identités numériques vérifiées pour accéder à la plateforme et effectuer des transactions en toute sécurité et confidentialité. Cette intégration de la solution E-Hawiya dans notre plateforme de gestion de chaîne de valeur des dattes renforce ainsi la confiance et la transparence dans la gestion de la chaîne de valeur des dattes.    
+   </p>
+ </div>
+ </div>
+ 
+ 
+   <div class="section3container ajnab section espace" id="utilisationdelaplateforme">
+
+
+     <h1 class="writing-effect">Comment commencer à utiliser la plateforme</h1>
+
+     <div  id="section3" >
+       <div class="top-left  grid-item">
+         <img class="image" src="assets/registrePage.png" alt="Product Image">
+         </div>
+       <div class="top-right grid-item">
+         <h2 class="text-center roboto">Signup</h2>
+         <p class="pres-mm">Pour commencer à utiliser la plateforme, vous devrez d'abord vous inscrire en fournissant votre numéro CIN et le numéro de téléphone portable associé à votre CIN. Après avoir soumis ces informations, un code de vérification sera envoyé à votre téléphone portable. Saisissez ce code dans le champ prévu à cet effet pour confirmer votre identité.
+ 
+           Nous utilisons les données de e-haweya pour vérifier votre identité et pour faciliter le processus d'inscription. Une fois que votre identité est vérifiée, vous serez invité à créer un compte sur la plateforme.</p>
+       </div >
+       <div class="bottom-left grid-item">
+         <h2 class="text-center roboto">Login</h2>
+         <p class="pres-mm">Une fois que vous avez créé votre compte, vous pourrez vous connecter à la plateforme en saisissant votre numéro CIN et le mot de passe qui vous a été envoyé précédemment. Si vous avez oublié votre mot de passe, vous pouvez cliquer sur le lien "Mot de passe oublié" et suivre les instructions pour le réinitialiser.
+ 
+           Une fois que vous êtes connecté, vous pouvez commencer à utiliser les fonctionnalités de la plateforme, notamment l'enregistrement des transactions, la vérification de l'historique des transactions et la gestion de votre compte utilisateur. N'oubliez pas de garder votre mot de passe en sécurité et de ne jamais le partager avec d'autres personnes. Si vous avez des problèmes pour vous connecter ou pour utiliser la plateforme, veuillez contacter notre équipe de support technique pour obtenir de l'aide.</p>
+       </div>
+       <div class="bottom-right grid-item">
+         <img  class="image" src="assets/loginPage.png" alt="Product Image">
+       </div>
+     </div>
+   </div>
+</div>
+
+</body>

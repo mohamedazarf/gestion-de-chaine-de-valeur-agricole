@@ -1,0 +1,58 @@
+
+<Body>
+  
+      
+<!-- <div class="container">
+    <div class="profile-info">
+      <div class="personal-info">
+        <h5 style="color: green;">Welcome !</h5>
+        <h3>Nom et Prénom :  Folen Ben Folen</h3>
+        <h4>CIN : 14 65 85 96</h4>
+        <h4>Email : folenbf@gmail.com</h4>
+        <h4>Téléphone : +216 50 120 635</h4>
+      </div>
+      <div class="profile-picture"></div>
+    </div>
+  </div> -->
+
+
+  <div class="container-fluid profileContainer">
+    <div class="row">
+      <div class="col-md-3 profile">
+        <p class="scoreTitle" *ngIf="showScoreTitle">your score</p>
+        <div class="score" (click)="showScoreTitle = true" (mouseout)="showScoreTitle = false">100</div>
+        <div class="profile-header">
+          <img src="https://via.placeholder.com/300x300" alt="Profile Picture" class="rounded-circle">
+          <h1>username</h1>
+          <p class="role">role</p>
+        </div>
+        <div class="profile-body">
+          <h2>My Transactions</h2>
+          <ul class="choices">
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+          </ul>
+        </div>
+      </div>
+      <div class="profileContent col-md-9">
+      <h1>content</h1>
+      </div>
+
+      
+       
+    </div>
+  </div>
+  
+ 
+  
+  <!-- <div class="row slideOfParam" style="background-color:  rgb(41, 78, 157);">
+    <div class="col-2  fixed-left taille" >
+     <div class="nav flex-column nav-pills mt-5 d-flex flex-column " style="Display:fixed;">
+       <h1 style="color: white;">Parameters</h1><br><br>
+       <a  style="color: white;" class="dropdown-item" (click)="toggleSection('utilisateur',$event)" href="#"><h5>param 1</h5></a><br>
+       <a  style="color: white;" class="dropdown-item" href="#"><h5>param 2</h5></a>
+     </div>
+   </div> 
+ </div> -->
+</Body>

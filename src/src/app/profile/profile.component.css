@@ -1,0 +1,202 @@
+body{
+    display:flex; justify-content: center; align-items:center; position: relative;
+}
+.identityNav{
+    position:absolute; top:-70px; width:100%;    background-color: red;
+    
+}
+
+.slideOfFunc{
+    position:absolute; top:0;  left:0px; height:100%; width:250px;
+    background-color:rgb(41, 78, 157);
+}
+.arrow {
+    position: absolute;
+    top: 50%;
+    left: 250px; 
+    transform: translateY(-50%);
+    width: 60px;
+    height: 50px;
+    transition: transform 0.5s ease-in-out; 
+    display:flex; justify-content: center; align-items:center; 
+    font-size:60px; 
+}  
+
+
+.slideOfParam{
+    position:absolute; top:0;  right:0; height:100%; width:250px;
+}
+.container {
+    position: absolute; top:0; 
+    display: flex;
+    flex-direction: column; 
+    box-shadow: 0 0 10px;
+    padding: 20px;
+    margin-top: 5%;
+    border-radius: 2%;
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .profile-picture {
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    
+    background-size: cover;
+    background-position: center;
+    margin-left: 450px;
+    border: 2px solid black;
+    box-shadow: 0 0 10px;
+  }
+  
+  .personal-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  h6, h3, h4 {
+    margin-top: 2em;
+  }
+  
+  h2 {
+    margin-top: 0;
+  }
+  
+  p {
+    margin-bottom: 5px;
+  }
+
+
+
+
+
+  .profile {
+    background-color: #f2f2f2;
+    padding: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    
+  }
+  
+  .profile-header {
+    text-align: center;
+  }
+  
+  .profile-header img {
+    width: 150px;
+    margin-bottom: 20px;
+    
+  }
+  
+  .profile-header h1 {
+    margin-top: 0;
+  }
+  
+  .profile-header p {
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  
+  .profile-body {
+    margin-top: 40px;
+    
+  }
+  
+  .transaction-icon {
+    background-color: #ccc;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    padding: 10px;
+    font-size: 30px;
+    margin-right: 10px;
+  }
+  
+  .transaction-details h3 {
+    margin-top: 0;
+  }
+  
+  @media (max-width: 991.98px) {
+    .profile {
+      margin-bottom: 20px;
+    }
+  }
+
+  .profileContainer{ padding:20px; width: calc(100% - 500px);
+  top:30px; position:absolute;
+  background-color: rgba(113, 132, 128, 0.7);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+
+  ul.choices {
+    list-style: none; /* remove the bullet points */
+    padding: 0; /* remove any default padding */
+    margin: 0; /* remove any default margin */
+  }
+  
+  ul.choices li {
+  /* display the list items horizontally */
+    margin-right: 10px; /* add some spacing between each item */
+    background-color: #f2f2f2; /* add a background color */
+    border-radius: 4px; /* add some rounded corners */
+    padding: 5px 10px; /* add some padding */
+    font-size: 28px; /* set the font size */
+    color: #333; /* set the text color */
+    text-decoration: none; /* remove any default text decoration */
+  }
+  
+  ul.choices li:hover {
+    background-color: #e0e0e0; /* change the background color on hover */
+    cursor: pointer; /* change the cursor to a hand pointer */
+  }
+  
+  ul.choices li.active {
+    background-color: #333; /* set a different background color for the active item */
+    color: #fff; /* set a different text color for the active item */
+  }
+  
+  .score {
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    z-index: 3;
+  }
+ 
+  .scoreTitle{
+    position: absolute;
+    top: -25px;
+    right: 25px;
+    background-color: green;
+    color: #fff;
+    width: auto;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    font-size: 20px; padding:0 20px;
+    clip-path: polygon(100% 26%, 100% 50%, 98% 61%, 0 61%, 10% 50%, 0 26%);  
+  
+  }
+  
+  .profileContent{
+    
+    
+   display:flex; justify-content: center; 
+   background-color: rgba(255, 255, 255, 0.558);
+    
+   /* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); */
+  }

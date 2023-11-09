@@ -1,0 +1,1087 @@
+<app-header></app-header>
+<body style="background-color: #f6f9ff;">
+<div class="container">
+    <div class="row" id="adminRole" *ngIf="userType==='admin'">
+           <div class="col-2  fixed-left taille" style="background-color:  rgb(41, 78, 157);">
+            <div class="nav flex-column nav-pills mt-5 d-flex flex-column functions" style="Display:fixed; ">
+              <h1 style="color: white;">Dashboard admin</h1><br><br> 
+              <a  style="color: white;" class="dropdown-item" (click)="toggleSection('utilisateur',$event)" ><h6>&nbsp;Gestion utilisateur</h6></a><br>
+              <a  style="color: white;" class="dropdown-item" (click)="toggleSection('Inscription',$event)"(click)="filterUsers()"><h6>&nbsp;Inscription</h6></a><br>
+              <a  style="color: white;" class="dropdown-item" (click)="toggleSection('listeReclammmations',$event); getAllReclamations()" ><h6>&nbsp;consulter la liste des reclammations</h6></a>
+            </div>
+          </div> 
+        </div>
+        <div class="row" id="userRole" *ngIf="userType==='user'">
+          <div class="col-2  fixed-left taille" style="background-color:  rgb(41, 78, 157);">
+           <div class="nav flex-column nav-pills mt-5 d-flex flex-column functions" style="Display:fixed;">
+             <h1 style="color: white;">Dashboard user</h1><br><br>
+             <a  style="color: white;" class="dropdown-item"  (click)="toggleSection('historique',$event)" ><h6>&nbsp;Consulter l'historique des accords</h6></a>
+             <a  style="color: white;" class="dropdown-item"  (click)="toggleSection('transformateurs',$event); consulterUserByType('transformateur')" *ngIf=" userType2==='agricole' || userRole==='agricole' " ><h6>&nbsp;Consulter les transformateurs</h6></a>
+             <a  style="color: white;" class="dropdown-item"  (click)="toggleSection('exportateurs',$event); consulterUserByType('exportateur') " *ngIf=" userRole==='transformateur'" ><h6>&nbsp;Consulter les exportateurs</h6></a>    
+             <a  style="color: white;" class="dropdown-item"  (click)="toggleSection('offreAgricolteur',$event)" *ngIf=" userRole==='transformateur' filterOffers2('agricole')" ><h6>&nbsp;Consulter les offres d'agricolteurs</h6></a> 
+             <a  style="color: white;" class="dropdown-item"  (click)="toggleSection('offretransformateur',$event); consulterUserByType('transformateur');  filterOffers2('transformateur')" *ngIf=" userRole==='exportateur'"><h6>&nbsp;Consulter les offres de transformateurs</h6></a>        
+             <a  style="color: white;" class="dropdown-item"  (click)="toggleSection('Stock',$event); "  *ngIf="userType2==='agricole' || userRole==='transformateur'" ><h6>&nbsp;quantité disponible et prix</h6></a>
+
+             <a  style="color: white;" class="dropdown-item"  (click)="toggleSection('reclamation',$event)"><h6>&nbsp;signaler une vioaltion des conditions</h6></a>
+            </div>
+         </div> 
+       </div>  
+       
+       
+
+    <div class="marget" id="utilisateur" *ngIf="(showSectionGestionUtilisateur && userType==='admin') ">
+     
+        <div class="col-md-12 s8ir">
+
+        <div class="input-group mb-3" >
+          <input type="text" class="form-control" placeholder="filtre sur tout les champs" [(ngModel)]="filterValue" (ngModelChange)="applyFilter()" >
+          <button class="btn btn-primary" >Filter</button> 
+        </div>
+      
+        </div>
+
+<div class="margett" >
+    
+<table class="table" *ngIf=" filterValue ==='' ">
+    <thead>
+        <tr>
+            <th>CIN<span class="arrow"   (click)="sortTable()"></span><span class="arrow"></span></th>
+            <th>Name&nbsp;<span class="arrow" (click)="sortTableArrows('name','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th>
+            <!-- <th>Username&nbsp;<span class="arrow" (click)="sortTableArrows('username','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th> -->
+            <th>Email&nbsp;<span class="arrow" (click)="sortTableArrows('email','asc')">▲</span><span class="arrow" (click)="sortTableArrows('email','des')">▼</span></th>
+            <th>phone&nbsp;<span class="arrow" (click)="sortTableArrows('phone','asc')">▲</span><span class="arrow" (click)="sortTableArrows('phone','des')">▼</span></th>
+            <th>type&nbsp;<span class="arrow" (click)="sortTableArrows('type','asc')">▲</span><span class="arrow" (click)="sortTableArrows('type','des')">▼</span></th>
+
+            <th colspan="2">Action</th>
+          </tr>
+    </thead>
+    <tbody class="table-light">
+    <tr *ngFor="let user of getPaginatedData2(approvedUsers,5)" >
+        <td (click)="showModal(user,'stats')">{{user.cin}}</td>
+        <!-- <td (click)="showModal(user,'stats')">{{user.cin}}</td> -->
+        <td (click)="showModal(user,'stats')">{{user.name}}</td>
+        <td (click)="showModal(user,'stats')">{{user.email}}</td>
+        <td (click)="showModal(user,'stats')">{{user.phone}}</td>
+        <td (click)="showModal(user,'stats')">{{user.type}}</td>
+        <td class="actions" colspan="2">
+
+          <a class="btn btn-primary tooltips" data-placement="top" (click)="showModal(user,'edit')"> 
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" style="color: white;" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+              <path d="M13.5 6.5l4 4"></path>
+           </svg>          
+          </a>
+        
+        &nbsp;&nbsp;
+        
+          <a class="btn btn-danger tooltips" data-placement="top" (click)="showModal(user,'delete')" >
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" style="color: white;" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M4 7l16 0"></path>
+              <path d="M10 11l0 6"></path>
+              <path d="M14 11l0 6"></path>
+              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+           </svg>  
+          </a>
+  
+        </td>
+      </tr>
+        </tbody>
+      
+  </table>
+  
+  <table class="table" *ngIf=" filterValue.length > 0">
+    <thead>
+      <tr>
+        <th>CIN<span class="arrow"   (click)="sortTable()"></span><span class="arrow"></span></th>
+        <th>Name<span class="arrow" (click)="sortTableArrows('name','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th>
+        <!-- <th>Username<span class="arrow" (click)="sortTableArrows('username','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th> -->
+        <th>Email<span class="arrow" (click)="sortTableArrows('email','asc')">▲</span><span class="arrow" (click)="sortTableArrows('email','des')">▼</span></th>
+        <th>phone<span class="arrow" (click)="sortTableArrows('phone','asc')">▲</span><span class="arrow" (click)="sortTableArrows('phone','des')">▼</span></th>
+        <th>type<span class="arrow" (click)="sortTableArrows('role','asc')">▲</span><span class="arrow" (click)="sortTableArrows('role','des')">▼</span></th>
+
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody class="table-light">
+      
+    <tr *ngFor="let user of filtredUsers " >
+        <td>{{user.cin}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.type}}</td>
+
+        <td>
+          <a class="btn btn-primary tooltips" (click)="showModal(user,'edit')" data-placement="top" data-original-title="Edit" style="color:white;" >
+            <i class="fa fa-pencil"></i> Edit
+          </a>&nbsp;&nbsp;
+          <a class="btn btn-danger tooltips" data-placement="top" data-original-title="Delete" (click)="showModal(user,'delete')" style="color:white;" >
+            <i class="fa fa-trash"></i> Delete
+          </a>
+        </td>
+      </tr>
+        </tbody>
+      
+  </table>
+  <div class="paginator">
+    <select class="form-select" [(ngModel)]="selectedLength">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+    <button [disabled]="currentPage === 1" class="btn btn-success bold" (click)="updateCurrentPage('back')">&#8592;</button>
+    <button [disabled]="currentPage === numberOfPages" class="btn btn-success" (click)="updateCurrentPage('next')">&#8594;</button>
+  </div>
+</div>
+</div>
+
+
+
+
+
+<!--INSCRIPTION -->
+
+<div class="marget" id="Inscription" *ngIf="showSectionInscription && userType ==='admin'">
+
+
+<div class="margett" >
+  <div *ngIf="hasWaitingUsers; else noWaitingUsersAlert">
+<table class="table" >
+<thead>
+<tr>
+    
+      <th>CIN</th>
+      <th>Name&nbsp;</th>
+      <th>Email&nbsp;</th>
+      <th>phone</th>
+      <th>role</th>
+      <th colspan="2">Action</th>
+</tr>
+
+</thead>
+<tbody class="table-light">
+
+  <tr *ngFor="let user of getPaginatedWaitingUsers()">
+    <td>{{user.cin}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.phone}}</td>
+    <td>{{user.type}}</td>
+   
+
+    <td colspan="2">
+      <a class="btn btn-primary tooltips" (click)="showModal(user,'moreDetails')" data-placement="top" data-original-title="Accepter" style="color:white;" >
+        <svg  width="24" height="24" viewBox="0 0 1024 1024" class="icon"  version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M320 89.6h640v76.8H320V89.6z m0 768h640v76.8H320v-76.8z m-256-768h128v76.8H64V89.6z m256 384h640v76.8H320V473.6z m-256 0h128v76.8H64V473.6z m0 384h128v76.8H64v-76.8z" fill="#000000" /></svg>
+      </a>&nbsp;&nbsp;
+        <!-- <a class="btn btn-primary tooltips" (click)="ajouterUtilisateur()"  data-placement="top" data-original-title="Accepter" style="color:white;" > -->
+        <a class="btn btn-primary tooltips"   data-placement="top" data-original-title="Accepter" style="color:white;" (click)="selectUser(user._id);showModal(user,'accepter')">
+
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M5 12l5 5l10 -10"></path>
+         </svg>
+        </a>&nbsp;&nbsp;
+        <a class="btn btn-danger tooltips" data-placement="top" data-original-title="Réfusé" style="color:white;" (click)="selectUser(user._id);showModal(user,'refuser')">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M18 6l-12 12"></path>
+            <path d="M6 6l12 12"></path>
+         </svg>
+        </a>
+      
+    
+  </td>
+</tr>
+  </tbody>
+
+</table>
+
+<div class="paginator">
+<select class="form-select" [(ngModel)]="selectedLength">
+<option value="5">5</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+<button [disabled]="currentPage === 1" class="btn btn-success bold" (click)="updateCurrentPage('back')">&#8592;</button>
+<button [disabled]="currentPage === numberOfPages" class="btn btn-success" (click)="updateCurrentPage('next')">&#8594;</button>
+</div>
+</div>
+
+<ng-template #noWaitingUsersAlert>
+  <div class="alert alert-warning">
+    No waiting users found.
+  </div>
+</ng-template>
+<ng-template #noOffers>
+  <div class="alert alert-warning">
+    pas des offres pour le moment
+  </div>
+</ng-template>
+
+<div *ngIf="filtredOffersByActor.length === 0">
+  <!-- <ng-container *ngTemplateOutlet="noOffers"></ng-container> -->
+  <div class="alert alert-warning">
+    pas des offres pour le moment
+  </div>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+<!-- reclamation -->
+<section class="reclamation margette " id="reclamation" *ngIf="showReclamationSection && userType ==='user'" >
+
+  <div class="platform-conditions  ">
+    <h3>Conditions de la plateforme</h3>
+    <ol type="I">
+      <li>Tous les utilisateurs doivent accepter nos termes et conditions avant d'utiliser la plateforme.</li>
+      <li>Les utilisateurs sont responsables de l'exactitude de leurs données et informations.</li>
+      <li>Nous nous réservons le droit de résilier l'accès de tout utilisateur à la plateforme à tout moment.</li>
+      <li>Les utilisateurs doivent se conformer à toutes les lois et réglementations applicables.</li>
+    </ol>
+  </div>
+
+  <form (submit)="createViolationReclamation($event,message)">
+    <h2>Reclamation Form</h2>
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="5" [(ngModel)]="message" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+
+<!-- Stock -->
+<section class="Stock margette" id="Stock"  *ngIf="userType ==='user' ">
+
+  <!--Agriculteur-->
+ 
+  <section class="agriculture" *ngIf="userType2 ==='agricole' && showSectionFarmerStock">
+    <h2>Ajouter vos offres ici</h2><br>
+    <form (ngSubmit)=" ajouterAuStock();ajouterOffre()" #stockForm="ngForm" ngForm>
+     
+      <div class="column">
+      <label for="product-quantity">Quantity (in kilograms):</label>
+    <div class="line">
+        <input type="number" id="product-quantity" name="product-quantity" min="1" ngModel >
+    <!-- <button >ajouter</button> -->
+    </div>
+      <label for="product-quality">Quality:</label>
+      <select id="product-quality" name="product-quality" ngModel >
+      <option value="">--Select Quality--</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+      </select>
+    
+      <label for="product-price">Price (per kilogram):</label>
+    <div class="line">
+      <input type="number" id="product-price" name="product-price" min="0" step="0.01" ngModel >
+      <!-- <button >modifier</button> -->
+    </div>
+  </div>
+  <div class="column">
+    <label for="product-unit">unit :</label>
+    <div class="line">
+      <input type="number" id="product-unit" name="product-unit"  ngModel >
+      <!-- <button >modifier</button> -->
+    </div>
+    <label for="product-state">state :</label>
+    <div class="line">
+      <input type="text" id="product-state" name="product-state"  ngModel >
+      <!-- <button >modifier</button> -->
+    </div>
+    <label for="actor-type">actor type:</label>
+    
+    <select id="actor-type" name="actor-type" ngModel >
+      <option value="">--Select actor type--</option>
+      <option value="Agriculteur">Agriculteur</option>
+      <option value="transformateur">transformateur</option>
+      <option value="exportateur">exportateur</option>
+    </select>
+</div>
+
+<div class="butt">
+    <button type="submit" class="btn btn-success">valider</button>
+  </div>
+    </form>
+    <br><br><br>
+    <table id="stock">
+      <thead>
+      <tr>
+        <th>Quality</th>
+        <th>Quantity in Stock</th>
+        <th>Price</th>
+      <th>actions</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of MyOffers" >
+          <td>{{item.quality}}</td>
+          <td>{{item.quantity}} kg</td>
+          <td>{{'$' + item.priceUnit + '/kg'}}</td>
+          <td class="actions" colspan="2">
+
+            <a class="btn btn-primary tooltips" data-placement="top" (click)="selectOffer(item); showUpdateStock('modifier')"> 
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" style="color: white;" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+                <path d="M13.5 6.5l4 4"></path>
+             </svg>          
+            </a>
+          
+          &nbsp;&nbsp;
+          
+            <a class="btn btn-danger tooltips" data-placement="top"  (click)="selectOffer(item); showUpdateStock('effacer')">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" style="color: white;" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 7l16 0"></path>
+                <path d="M10 11l0 6"></path>
+                <path d="M14 11l0 6"></path>
+                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+             </svg>  
+            </a>
+          </td>   
+        </tr>
+      </tbody>
+      </table>
+  </section>
+
+
+
+  <!-- transformarteur -->
+
+
+  <section class="transformateur" *ngIf="userRole ==='transformateur'&& showSectionTransformateurStock" >
+    <h2>Ajouter vos offres ici</h2><br>
+    <form (ngSubmit)=" ajouterAuStock(); ajouterOffre()" #stockForm="ngForm" ngForm>
+     
+      <div class="column">
+      <label for="product-quantity">Quantity (in kilograms):</label>
+    <div class="line">
+        <input type="number" id="product-quantity" name="product-quantity" min="1" ngModel >
+    <!-- <button >ajouter</button> -->
+    </div>
+      <label for="product-quality">Quality:</label>
+      <select id="product-quality" name="product-quality" ngModel >
+      <option value="">--Select Quality--</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+      </select>
+    
+      <label for="product-price">Price (per kilogram):</label>
+    <div class="line">
+      <input type="number" id="product-price" name="product-price" min="0" step="0.01" ngModel >
+      <!-- <button >modifier</button> -->
+    </div>
+  </div>
+  <div class="column">
+    <label for="product-unit">unit :</label>
+    <div class="line">
+      <input type="number" id="product-unit" name="product-unit"  ngModel >
+      <!-- <button >modifier</button> -->
+    </div>
+    <label for="product-state">state :</label>
+    <div class="line">
+      <input type="text" id="product-state" name="product-state"  ngModel >
+      <!-- <button >modifier</button> -->
+    </div>
+    <label for="actor-type">actor type:</label>
+    
+    <select id="actor-type" name="actor-type" ngModel >
+    <option value="">--Select actor type--</option>
+    <option value="Agriculteur">Agriculteur</option>
+    <option value="transformateur">transformateur</option>
+    <option value="exportateur">exportateur</option>
+    </select>
+</div>
+
+<div class="butt">
+    <button type="submit" class="btn btn-success">valider</button>
+  </div>
+    </form>
+    <br><br><br>
+    <table id="stock">
+      <thead>
+      <tr>
+        <th>Quality</th>
+        <th>Quantity in Stock</th>
+        <th>Price</th>
+        <th>actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      
+        <tr *ngFor="let item of MyOffers">
+          <td>{{item.quality}}</td>
+          <td>{{item.quantity}} kg</td>
+          <td>{{'dt' + item.priceUnit + '/kg'}}</td>
+          <td class="actions" colspan="2">
+
+            <a class="btn btn-primary tooltips" data-placement="top" (click)="selectOffer(item); showUpdateStock('modifier')"> 
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" style="color: white;" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+                <path d="M13.5 6.5l4 4"></path>
+             </svg>          
+            </a>
+          
+          &nbsp;&nbsp;
+          
+            <a class="btn btn-danger tooltips" data-placement="top"  (click)="selectOffer(item); showUpdateStock('effacer')">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" style="color: white;" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 7l16 0"></path>
+                <path d="M10 11l0 6"></path>
+                <path d="M14 11l0 6"></path>
+                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+             </svg>  
+            </a>
+    
+          </td>
+        </tr>
+      </tbody>
+      </table>
+  </section>
+ 
+  </section>
+
+ 
+
+  <!--Transformateur-->
+  <section class="transformateurs margette" id="transformateurs" *ngIf=" showTransformateurs && (userType2==='agricole' || userRole === 'agricole') " >
+
+    <div class="margett" >
+
+      <table class="table" *ngIf="filterValue ===''" >
+      <thead>
+      <tr>
+          
+        <th>Name&nbsp;</th>
+        <th>phone</th>
+            <!-- <th>Username&nbsp;</th> -->
+            <th>Email&nbsp;</th>
+      </tr>
+      
+      </thead>
+      <tbody class="table-light">
+      
+        <tr *ngFor="let user of usersByType" >
+          <td>{{user.name}}</td>
+          <td>{{user.phone}}</td>
+          <td>{{user.email}}</td>
+      </tr>
+        </tbody>
+      
+      </table>
+      <table class="table" *ngIf="filterValue.length > 0" >
+        <thead>
+        <tr>
+            
+          <th>Name&nbsp;</th>
+          <th>phone</th>
+              <!-- <th>Username&nbsp;</th> -->
+              <th>Email&nbsp;</th>
+        </tr>
+        
+        </thead>
+        <tbody class="table-light">
+        
+          <tr *ngFor="let user of filtredUsersByType" >
+            <td>{{user.name}}</td>
+            <td>{{user.phone}}</td>
+            <td>{{user.email}}</td>
+        </tr>
+          </tbody>
+        
+        </table>
+      <div class="paginator">
+      <select class="form-select" [(ngModel)]="selectedLength">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      </select>
+      <button [disabled]="currentPage === 1" class="btn btn-success bold" (click)="updateCurrentPage('back')">&#8592;</button>
+      <button [disabled]="currentPage === numberOfPages" class="btn btn-success" (click)="updateCurrentPage('next')">&#8594;</button>
+      </div>
+      </div>
+ </section>
+
+<!--the end of the container-->
+</div>
+
+<!-- Show Exportateur -->
+<section class="margette" *ngIf="showExportateurs && userType ==='user' && userRole ==='transformateur' " id="showExportateurs">
+  <table class="table" *ngIf="filterValue ===''">
+    <thead>
+        <tr>
+          <th style="text-align: center;">Name&nbsp;<span class="arrow" (click)="sortTableArrows('name','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th>
+          <th style="text-align: center;">phone<span class="arrow"   (click)="sortTable()"></span><span class="arrow"></span></th>
+            <!-- <th>Username&nbsp;<span class="arrow" (click)="sortTableArrows('username','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th> -->
+            <th style="text-align: center;">Email&nbsp;<span class="arrow" (click)="sortTableArrows('email','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th>
+            <!-- <th colspan="2" style="text-align: center;">Action</th> -->
+          </tr>
+    </thead>
+    <tbody class="table-light">
+    <tr *ngFor="let user of getPaginatedData2(usersByType,10)" >
+      <td (click)="showModal(user,'stats')">{{user.name}}</td>
+      <td (click)="showModal(user,'stats')">{{user.phone}}</td>
+        <td (click)="showModal(user,'stats')">{{user.email}}</td>
+
+        
+      </tr>
+        </tbody>
+  </table>
+  <table class="table" *ngIf="filterValue.length > 0">
+    <thead>
+        <tr>
+            <th>ID<span class="arrow"   (click)="sortTable()"></span><span class="arrow"></span></th>
+            <th>Name&nbsp;<span class="arrow" (click)="sortTableArrows('name','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th>
+            <th>Username&nbsp;<span class="arrow" (click)="sortTableArrows('username','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th>
+            <th>Email&nbsp;<span class="arrow" (click)="sortTableArrows('email','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th>
+            <th colspan="2">Action</th>
+          </tr>
+    </thead>
+    <tbody class="table-light">
+    <tr *ngFor="let user of filtredUsersByType" >
+        <td (click)="showModal(user,'stats')">{{user._id}}</td>
+        <td (click)="showModal(user,'stats')">{{user.cin}}</td>
+        <td (click)="showModal(user,'stats')">{{user.email}}</td>
+        <td (click)="showModal(user,'stats')">{{user.name}}</td>
+        <td (click)="showModal(user,'stats')">{{user.phone}}</td>
+        <td (click)="showModal(user,'stats')">{{user.role}}</td>
+
+        <td class="actions">
+          <a class="btn btn-primary tooltips" data-placement="top" (click)="showModal(user,'edit')"> 
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" style="color: white;" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+              <path d="M13.5 6.5l4 4"></path>
+           </svg>          
+          </a>
+        
+        &nbsp;&nbsp;
+        
+          <a class="btn btn-danger tooltips" data-placement="top" (click)="showModal(user,'delete')" >
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" style="color: white;" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M4 7l16 0"></path>
+              <path d="M10 11l0 6"></path>
+              <path d="M14 11l0 6"></path>
+              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+           </svg>  
+          </a>
+  
+        </td>
+      </tr>
+        </tbody>
+  </table>
+  <div class="paginator">
+    <select class="form-select" [(ngModel)]="selectedLength">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+    </select>
+    <button [disabled]="currentPage === 1" class="btn btn-success bold" (click)="updateCurrentPage('back')">&#8592;</button>
+    <button [disabled]="currentPage === numberOfPages" class="btn btn-success" (click)="updateCurrentPage('next')">&#8594;</button>
+    </div>
+    
+</section>
+
+<!-- Historique -->
+<section class="historique" id="historique" *ngIf="userType ==='user' || userRole2 ==='user' ">
+ <!-- Historique Agriculteur -->
+  <section *ngIf="showhistoriqueAgricolteur && userType2==='agricole'" >
+    <table id="historique">
+      <thead>
+      <tr>
+        <th>date</th>
+        <th>nom</th>
+        <th>télephone</th>
+        <th>prix</th>
+        <th>quantité</th>
+        <th>qualité</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr>
+<td>{{historyId}}</td>
+          <td>hcdhd</td>
+<td>hcdhd</td>
+<td>hcdhd</td>
+<td>{{historyQty}}</td>
+<td>{{historyQlty}}</td>
+        </tr>
+      </tbody>
+      </table>
+  </section>
+<!-- Historique Transformateur -->
+<section *ngIf="showhistoriqueTransformateur && userRole==='transformateur'">
+  <table id="historique">
+    <thead>
+    <tr>
+      <th>date</th>
+      <th>nom de l'achetetur</th>
+      <th>télephone</th>
+      <th>Prix</th>
+      <th>quantité acheté</th>
+      <th>qualité</th>
+    </tr>
+    </thead>
+    <tbody>
+<tr>
+  <td>
+{{transactionHistory}}
+
+  </td>
+</tr>
+    </tbody>
+    </table>
+</section>
+<!-- Historique exportateur -->
+<section *ngIf="showhistoriqueExportateur && userRole==='exportateur' && filterValue ==='' ">
+  <table id="historique">
+    <thead>
+    <tr>
+      <th>Quality exportateur</th>
+      <th>Quantity in Stock</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+      <tr *ngFor="let item of offers">
+        <td>{{item.quality}}</td>
+        <td>{{item.quantity}} kg</td>
+        <td>{{'$' + item.priceUnit+ '/kg'}}</td>
+      </tr>
+    </tbody>
+    </table>
+</section>
+<section *ngIf="showhistoriqueExportateur && userRole==='exportateur' && filterValue.length > 0 ">
+  <table id="historique">
+    <thead>
+    <tr>
+      <th>Quality exportateur</th>
+      <th>Quantity in Stock</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+      <tr *ngFor="let item of filtredOffers">
+        <td>{{item.quality}}</td>
+        <td>{{item.quantity}} kg</td>
+        <td>{{'$' + item.priceUnit+ '/kg'}}</td>
+      </tr>
+    </tbody>
+    </table>
+</section>
+</section>
+
+<!-- Offre -->
+
+<section class="historique" id="historique" *ngIf="showOffreAgricoleur && userType==='user'&& userRole==='transformateur'">
+  <table id="historique" >
+    <thead>
+    <tr>
+      <th>nom de l'agriculteur</th>
+      <th>telephone de l'agriculteur</th>
+      <th>Quality</th>
+      <th>Quantity in Stock</th>
+      <th>Price</th>
+      <th colspan="2">actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let item of getPaginatedData2(filteredOffersByActor,10)">
+        <td>
+          {{ userNames[item.actorRef] }}
+        </td>
+        <td>{{ phoneNumbers[item.actorRef] }}</td>
+        <td>{{item.quality}}</td>
+        <td>{{item.quantity}} kg</td>
+        <td>{{'dt' + item.priceUnit + '/kg'}}</td>
+        <td class="actions" colspan="2">
+          <button class="btn btn-success" (click)="acheterOffre(item._id)">acheter</button>
+         </td>
+      </tr>
+    </tbody>
+    </table>
+     <div class="paginator-offreAgricole">
+      <select class="form-select" [(ngModel)]="selectedLength">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      </select>
+      <button [disabled]="currentPage === 1" class="btn btn-success bold" (click)="updateCurrentPage('back')">&#8592;</button>
+      <button [disabled]="currentPage === numberOfPages" class="btn btn-success" (click)="updateCurrentPage('next')">&#8594;</button>
+      </div>
+      
+</section>
+<div class="Recla margette" id="main-container" *ngIf="showListeReclammmations">
+  <div class="row">
+    <div *ngFor="let reclammation of reclammmations" class="col-md-4 col-xl-3.5">
+      <div class="card m-b-30">
+        <div class="card-body row">
+          <div class="card-title col-12 mb-0">
+            <h5>Acteur: {{ userNamesWithReclammation[reclammation.userRef] }}</h5>
+          </div>
+          <div class="card-title col-12 mb-0">
+            <h5>Phone: {{ phoneNumbersWithReclamation[reclammation.userRef] }}</h5>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Contenu: {{ reclammation.msg }}</li>
+        </ul>
+        <button class="btn-delete"  (click)="deleteReclamation(reclammation._id)">Supprimer</button>
+        <!-- -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- Offre transformateur -->
+  <section class="margette" *ngIf="showOffreTransformateur && userType ==='user' && userRole ==='exportateur' " id="showOffreTransformateur">
+    <table class="table" *ngIf="filterValue === ''">
+      <thead >
+          <tr>
+              <th style="text-align: center;">ID<span class="arrow"   (click)="sortTable()"></span><span class="arrow"></span></th>
+              <th style="text-align: center;">cin<span class="arrow"   (click)="sortTable()"></span><span class="arrow"></span></th>
+              <th style="text-align: center;">quantité&nbsp;<span class="arrow" (click)="sortTableArrows('name','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th>
+              <th style="text-align: center;">qualité&nbsp;<span class="arrow" (click)="sortTableArrows('email','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th>
+              <th style="text-align: center;">prix&nbsp;<span class="arrow" (click)="sortTableArrows('phone','asc')">▲</span><span class="arrow" (click)="sortTableArrows('phone','des')">▼</span></th>
+
+              <th colspan="2" style="text-align: center;">Action</th>
+            </tr>
+      </thead>
+      <tbody class="table-light">
+        <tr *ngFor="let offer of filtredOffersByActor" >
+          <td (click)="showModal(offer,'stats')">{{userNames[offer.actorRef]}}</td>
+          <td (click)="showModal(offer,'stats')">{{phoneNumbers[offer.actorRef]}}</td>
+
+          <td (click)="showModal(offer,'stats')">{{offer.quantity}}</td>
+          <td (click)="showModal(offer,'stats')">{{offer.quality}}</td>
+          <td (click)="showModal(offer,'stats')">{{offer.priceUnit}}</td>
+          <td class="actions" colspan="2">
+           <button class="btn btn-success" (click)="acheterOffre(offer._id)">acheter</button>
+          </td>
+        </tr>
+          </tbody>    
+    </table>
+
+    <table class="table" *ngIf="filterValue.length > 0">
+      <thead>
+          <tr>
+              <th>ID<span class="arrow"   (click)="sortTable()"></span><span class="arrow"></span></th>
+              <th>Name&nbsp;<span class="arrow" (click)="sortTableArrows('name','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th>
+              <th>Username&nbsp;<span class="arrow" (click)="sortTableArrows('username','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th>
+              <th>Email&nbsp;<span class="arrow" (click)="sortTableArrows('email','asc')">▲</span><span class="arrow" (click)="sortTableArrows('name','des')">▼</span></th>
+              <th colspan="2">Action</th>
+            </tr>
+      </thead>
+      <tbody class="table-light">
+      <tr *ngFor="let user of filtredOffers" >
+          <td (click)="showModal(user,'stats')"></td>
+          <td (click)="showModal(user,'stats')"></td>
+          <td (click)="showModal(user,'stats')">{{user.quantity}}</td>
+          <td (click)="showModal(user,'stats')">{{user.quality}}/td>
+          <td (click)="showModal(user,'stats')">{{user.priceUnit}}</td>
+          <td (click)="showModal(user,'stats')"></td>
+
+          <td class="actions">
+            <a class="btn btn-primary tooltips" data-placement="top" (click)="showModal(user,'edit')"> 
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" style="color: white;" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+                <path d="M13.5 6.5l4 4"></path>
+             </svg>          
+            </a>
+          
+          &nbsp;&nbsp;
+          
+            <a class="btn btn-danger tooltips" data-placement="top" (click)="showModal(user,'delete')" >
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" style="color: white;" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 7l16 0"></path>
+                <path d="M10 11l0 6"></path>
+                <path d="M14 11l0 6"></path>
+                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+             </svg>  
+            </a>
+    
+          </td>
+        </tr>
+          </tbody>      
+    </table>
+
+    <div class="paginator">
+      <select class="form-select" [(ngModel)]="selectedLength">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      </select>
+      <button [disabled]="currentPage === 1" class="btn btn-success bold" (click)="updateCurrentPage('back')">&#8592;</button>
+      <button [disabled]="currentPage === numberOfPages" class="btn btn-success" (click)="updateCurrentPage('next')">&#8594;</button>
+      </div>
+      
+  </section>
+
+<!-- <ng-template *ngIf="showUpdateUserForm"> -->
+<div class="modal-overlay" [ngClass]="{'open': showModalFlag}" *ngIf="showModalFlag">
+  <div class="modal">
+    <div id="userDetails" *ngIf="operation!=='stats' && operation!=='moreDetails' && userType==='admin' || (userType==='admin' && operation === ('accpter' || 'refuser'))  "  >
+    <div class="modal-header">
+      <h2 *ngIf="operation === 'accepter' || operation === 'refuser'">are you sure you want to continue?</h2>
+      <h2 *ngIf="operation !== 'accepter' && operation !== 'refuser'">User Details</h2>
+      <button id="closeUserDetails" class="close-btn btn btn-danger" (click)="hideModal(); closeModal(updateForm)">X</button>
+     
+
+    </div>
+    <form (ngSubmit)="updateUser(selectedUser._id)" #updateForm="ngForm" >
+    <table class="user-details-table" *ngIf="operation === 'edit' || operation === 'delete' ">
+   
+     
+        <tr>
+          <th>Name:</th>
+          <ng-container *ngIf="selectedUser">
+            <td *ngIf="operation==='delete'" style="width:300px;">{{selectedUser?.name}}</td> 
+            <td *ngIf="operation==='edit'"><input style="width:300px;" type="text" value="{{selectedUser?.name}}" placeholder="{{selectedUser?.name}}" [(ngModel)]="updatedName" name="updatedNameField"></td>
+          </ng-container>
+        </tr>
+        <tr>
+          <th>CIN:</th>
+          <td *ngIf="operation==='delete'" style="width:300px;">{{selectedUser?.cin}}</td> 
+          <td *ngIf="operation==='edit'"> <input style="width:300px;"type="number" value="{{selectedUser?.cin}}" placeholder="{{selectedUser?.cin}}" [(ngModel)]="updatedCin" name="updatedCinField"></td>
+        </tr>
+        <tr>
+          <th>Email:</th>
+          <td *ngIf="operation==='delete'" style="width:300px;">{{selectedUser?.email}}</td> 
+          <td *ngIf="operation==='edit'"> <input style="width:300px;"type="text" value="{{selectedUser?.email}}" placeholder="{{selectedUser?.email}}" [(ngModel)]="updatedEmail" name="updatedEmailField"></td>
+        </tr>
+        <tr>
+          <th>phone:</th>
+          <td *ngIf="operation==='delete'" style="width:300px;">{{selectedUser?.phone}}</td> 
+          <td *ngIf="operation==='edit'"> <input style="width:300px;"type="phone" value="{{selectedUser?.phone}}" placeholder="{{selectedUser?.phone}}" [(ngModel)]="updatedPhone" name="updatedPhoneField"></td>
+        </tr>
+        <tr>
+          <th>role:</th>
+          <td *ngIf="operation==='delete'" style="width:300px;">{{selectedUser?.role}}</td> 
+          <td *ngIf="operation==='edit'"> <input style="width:300px;"type="text" value="{{selectedUser?.role}}" placeholder="{{selectedUser?.role}}" [(ngModel)]="updatedRole" name="updatedRoleField"></td>
+        </tr>
+        <tr>
+          <th>type:</th>
+          <td *ngIf="operation==='delete'" style="width:300px;">{{selectedUser?.type}}</td> 
+          <td *ngIf="operation==='edit'"> <input style="width:300px;"type="text" value="{{selectedUser?.type}}" placeholder="{{selectedUser?.type}}" [(ngModel)]="updatedType" name="updatedTypeField"></td>
+        </tr> 
+
+    </table>
+
+      <br>
+    <!-- <button class="btn btn-primary" *ngIf="operation==='delete'" (click)="onDeleteUser( selectedUser)">valider la suppression</button> -->
+    <button class="btn btn-primary" *ngIf="operation==='delete'" (click)="deleteUser2( selectedUser._id)">valider la suppression</button>
+
+<button class="btn btn-success" style="width:100%" *ngIf="operation==='accepter'" (click)="accepterUser(selectedUser._id)">accepter</button>
+<button class="btn btn-danger" style="width:100%" *ngIf="operation==='refuser'" (click)="deleteUser2(selectedUser._id)">refuser</button>
+    <button class="btn btn-primary" type="submit" *ngIf="operation==='edit'" (click)="updateUser( selectedUser._id);updateUserValues(); ">valider la modification</button>
+  </form>
+  </div>
+ 
+
+  <div id="moreDetails" *ngIf="operation==='moreDetails'">
+    <div class="modal-header">
+      <h2>affecter un role pour lui dans la plateforme</h2>
+      <button class="close-btn btn btn-danger" (click)="hideModal()">X</button>
+    </div>
+  
+    <table class="user-details-table">
+      
+     <tr>
+      <div class="dropdown" >
+        <td><button class="dropbtn">Select an option &#x25BC;</button></td>
+        <td>{{role}}</td>
+        <!-- <div class="dropdown-content" [(ngModel)]="selectedSection" (ngModelChange)="scrollToSection()">
+          <a href="#">Option 1</a>
+          <a href="#">Option 2</a>
+          <a href="#">Option 3</a>
+        </div> -->
+        <select class="form-select" [(ngModel)]="role" (ngModelChange)="affecterRole(role)">
+          <option value="agricole">agriculteur</option>
+          <option value="transformateur">transformateur/option>
+          <option value="exportateur">exportateur</option>
+          
+        </select>
+      </div>
+      
+     </tr> 
+     
+      
+    </table>
+  </div>
+
+
+
+  <div id="aboutUser" *ngIf="operation==='stats'">
+    <div class="modal-header">
+      <h2>about user</h2>
+      <button class="close-btn btn btn-danger" (click)="hideModal()">X</button>
+    </div>
+  
+    <table class="user-details-table">
+      <!-- <tr>
+        <th>id</th>
+        <td>{{selectedUser?._id}}</td>
+      </tr> -->
+     
+        <tr>
+          <th>name</th>
+         <td >{{selectedUser.name}}</td>
+        </tr>
+        <tr>
+          <th>cin</th>
+         <td >{{selectedUser.cin}}</td>
+         <!-- <tr>
+          <th>cin</th>
+         <td >{{selectedUser.cin}}</td>
+        </tr> -->
+        <tr>
+          <tr>
+            <th>email</th>
+           <td >{{selectedUser.email}}</td>
+          </tr>
+          <tr>
+      
+    </table>
+</div>
+
+<div class="updateStock" *ngIf="updateStockMode">
+  <button class="btn btn-danger hideModal" (click)="hideModal()">X</button>
+<form #UpdatestockForm="ngForm" >
+  <label for="product-quantity">Quantity (in kilograms):</label>
+  <input type="number" id="product-quantity" *ngIf="!deleteOfferBoolean" name="product-quantity" min="1" [(ngModel)]="productQuantity">
+<input type="text" value="{{selectedOffer._id}}"  *ngIf="deleteOfferBoolean" readonly>
+  <label for="product-quality" >Quality:</label>
+  <select id="product-quality" name="product-quality" [(ngModel)]="productQuality" *ngIf="!deleteOfferBoolean">
+    <option value="hight">haut</option>
+    <option value="average">moyen</option>
+    <option value="low">bas</option>
+  </select>
+  <input type="text" value="{{selectedOffer.quality}}" *ngIf="deleteOfferBoolean" readonly>
+
+  <label for="product-price">Price (per unity):</label>
+  <input type="number" id="product-price" name="product-price" min="0" step="0.01" [(ngModel)]="productPrice" *ngIf="!deleteOfferBoolean">
+  <input type="text" value="{{selectedOffer.Price}}" *ngIf="deleteOfferBoolean" readonly>
+  <label for="product-unit">Unit:</label>
+  <input type="number" id="product-unit" name="product-unit" [(ngModel)]="productUnit" *ngIf="!deleteOfferBoolean">
+  <input type="text" value="{{selectedOffer.unit}}" *ngIf="deleteOfferBoolean" readonly>
+  <label for="actor-type">Actor Type:</label>
+  <select id="actor-type" name="actor-type" [(ngModel)]="actorType" *ngIf="!deleteOfferBoolean">
+    <option value="agricole">agriculteur</option>
+    <option value="transformateur">transformateur</option>
+    <option value="exportateur">exportateur</option>
+  </select>
+  <input type="text" value="{{selectedOffer.actorType}}" *ngIf="deleteOfferBoolean" readonly>
+  <label for="state">State:</label>
+  <input type="text" id="state" name="state" [(ngModel)]="state" *ngIf="!deleteOfferBoolean">
+  <input type="text" value="{{selectedOffer.state}}" *ngIf="deleteOfferBoolean" readonly>
+  <button class="btn btn-success valider" type="submit" *ngIf="!deleteOfferBoolean" (click)="showUpdateStockValues(); updateStock(selectedOffer._id);">Appliquer la modification</button>
+  <button class="btn btn-success valider" type="submit" *ngIf="deleteOfferBoolean" (click)="deleteOffer(selectedOffer._id)">supprimer définitivement</button>
+</form>
+</div>
+
+</div>
+</div>
+<!-- </ng-template> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="success" *ngIf="validationMessage">
+  <div class="icon">
+    <svg fill="white" width="100" height="100" viewBox="0 0 24 24" id="verified" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color">
+      <polyline fill="none" id="secondary" points="8 12 11 15 16 10" style="fill: none; stroke: green; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
+      <path fill="none" id="primary" d="M21.37,12c0,1-.86,1.79-1.14,2.67s-.1,2.08-.65,2.83-1.73.94-2.5,1.49-1.28,1.62-2.18,1.92S13,20.65,12,20.65s-2,.55-2.9.27S7.67,19.55,6.92,19,5,18.28,4.42,17.51s-.35-1.92-.65-2.83S2.63,13,2.63,12s.86-1.8,1.14-2.68.1-2.08.65-2.83S6.15,5.56,6.92,5,8.2,3.39,9.1,3.09s1.93.27,2.9.27,2-.55,2.9-.27S16.33,4.46,17.08,5s1.94.72,2.5,1.49.35,1.92.65,2.83S21.37,11,21.37,12Z" style="stroke: green; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+    </svg>
+  </div>    
+  <div class="message success" >done successfuly</div>
+   <!-- <div class="message success"*ngIf="personDetails.valid && loginIsValid  && loginIsSubmitted && showSuccessMessage" >You're good to pass!</div> -->
+
+</div> 
+<div class="success" *ngIf="validationMessage">
+  <div class="icon">
+    <svg fill="white" width="100" height="100" viewBox="0 0 24 24" id="verified" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color">
+      <polyline fill="none" id="secondary" points="8 12 11 15 16 10" style="fill: none; stroke: green; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
+      <path fill="none" id="primary" d="M21.37,12c0,1-.86,1.79-1.14,2.67s-.1,2.08-.65,2.83-1.73.94-2.5,1.49-1.28,1.62-2.18,1.92S13,20.65,12,20.65s-2,.55-2.9.27S7.67,19.55,6.92,19,5,18.28,4.42,17.51s-.35-1.92-.65-2.83S2.63,13,2.63,12s.86-1.8,1.14-2.68.1-2.08.65-2.83S6.15,5.56,6.92,5,8.2,3.39,9.1,3.09s1.93.27,2.9.27,2-.55,2.9-.27S16.33,4.46,17.08,5s1.94.72,2.5,1.49.35,1.92.65,2.83S21.37,11,21.37,12Z" style="stroke: green; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+    </svg>
+  </div>    
+  <div class="message success" >done successfuly</div>
+</div> 
+<div class="error" *ngIf="errorMessage">
+  <div class="icon">
+  <svg width="100" height="100px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>error</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="red" fill-rule="evenodd">
+        <g id="add" fill="red" transform="translate(42.666667, 42.666667)">
+            <path fill="red" d="M213.333333,3.55271368e-14 C331.136,3.55271368e-14 426.666667,95.5306667 426.666667,213.333333 C426.666667,331.136 331.136,426.666667 213.333333,426.666667 C95.5306667,426.666667 3.55271368e-14,331.136 3.55271368e-14,213.333333 C3.55271368e-14,95.5306667 95.5306667,3.55271368e-14 213.333333,3.55271368e-14 Z M213.333333,42.6666667 C119.232,42.6666667 42.6666667,119.232 42.6666667,213.333333 C42.6666667,307.434667 119.232,384 213.333333,384 C307.434667,384 384,307.434667 384,213.333333 C384,119.232 307.434667,42.6666667 213.333333,42.6666667 Z M262.250667,134.250667 L292.416,164.416 L243.498667,213.333333 L292.416,262.250667 L262.250667,292.416 L213.333333,243.498667 L164.416,292.416 L134.250667,262.250667 L183.168,213.333333 L134.250667,164.416 L164.416,134.250667 L213.333333,183.168 L262.250667,134.250667 Z" id="error">
+</path>
+        </g>
+    </g>
+</svg>
+  </div>
+  <div class="message error" >sorry but it failed</div>
+</div>
+
+
+
+<div class="marget" *ngIf="filtrage" >
+     
+  <div class="col-md-12 s8ir" >
+
+  <div class="input-group mb-3" >
+    <input type="text" class="form-control" placeholder="filtre sur tout les champs" [(ngModel)]="filterValue" (ngModelChange)="applyFilter()" >
+    <button class="btn btn-primary" (click)="applyFilterUsersDashbord()">Filter</button> 
+  </div>
+
+  </div>
+</div>
+
+
+
+</body>

@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+
+body{
+    
+    /* background-image:url('C:\Users\mhmdz\OneDrive\Images\image projet pfe-code\dattes.jpg');
+    background-repeat: no-repeat; background-size: cover; */
+    height:1000px;
+    /* padding-top: 70px; */
+    /* background-image: url('src\assets\backgroundProjet.png');  */
+    background-repeat: no-repeat; background-size: cover;
+    background-position: center;
+      
+}
+.hidden {
+    opacity: 0;
+    height: 0;
+    transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+    overflow: hidden; box-shadow: none;
+  }
+.DisplayNone{
+    display: none;
+}
